@@ -2,52 +2,87 @@ var displaynumb = "";
 var numero = "";
 var fatores= [undefined,undefined,undefined];
 var resultado = undefined;
+
+
 function pressione(num) {
     numero = numero.concat(num.innerHTML);
-    mostrardisplay(num.innerHTML)
+    mostrard(num.innerHTML);
 }
 
 
-function limparmemoria() {
-    numero = ""
-    console.log(numero);
+function pressoperador(op) {
+   
+   if(fatores[1]==undefined) { 
+    fatores[0]=numero;
+    fatores[1]=op.innerHTML;
+    mostrard(op.innerHTML);
+    numero="";
 }
 
-function mostrardisplay(conteudo) {
+    
+}
+
+
+function pressresultado()  { 
+   
+   if(fatores[0] != undefined && fatores[1] != undefined && numero != "") {
+
+   
+    fatores[2]=numero;
+     var contresultado;
+switch(fatores[1]){
+case"+" :
+resultado= Number(fatores[0]) + Number(fatores[2]);
+break;
+case"-" :
+resultado= Number(fatores[0]) - Number(fatores[2]);
+break;
+case "*" :
+    resultado= Number(fatores[0]) * Number(fatores[2]);
+
+    break;
+
+    case"/":
+    resultado= Number(fatores[0]) / Number(fatores[2]);
+break;
+
+
+
+}
+
+var contresultado = resultado;
+    limpard();
+    mostrard(resultado);
+    clearmemory()
+    numero = contresultado;
+
+}
+    
+
+}
+
+
+function clearmemory() {
+    numero = "";
+    
+}
+
+
+function limpard() {
+    displaynumb="";
+    var tela = document.getElementById("displaycont");
+    tela.value = displaynumb;
+    
+}
+
+
+function  limparg() {
+    clearmemory()   
+    limpard()
+}
+
+function mostrard(conteudo) {
     displaynumb = displaynumb.concat(conteudo);
-    var tela = document.getElementById('displaycont');
-tela.value = displaynumb
-
-}
-
-function limpardisplay() {
-    var displaynumb=""
-    var tela = document.getElementById('displaycont');
-tela.value = displaynumb
-
-    
-}
-
-
-
-function limpartd() {
-    limparmemoria()
-    limpardisplay()
-}
-
-
-function presseioneop(op) {
-  fatores[0] = numero
-  fatores[1]=op.innerHTML
-  mostrardisplay(op.innerHTML)
-  numeros=""
-}
-
-
-function pressresult() {
-    termos[2] = numeros;
-     resultado = number(termos[0]) + number(termos[2]);
-     limpardisplay()
-     mostrardisplay(resultado)
-    
+    var tela = document.getElementById("displaycont");
+    tela.value = displaynumb; 
 }
