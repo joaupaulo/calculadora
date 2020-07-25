@@ -12,18 +12,24 @@ function pressione(num) {
 
 function pressoperador(op) {
    
-  
+  if (fatores[1]==undefined) {
     fatores[0]=numero;
     fatores[1]=op.innerHTML;
     mostrard(op.innerHTML);
     numero="";
+  }
+    
 
     
 }
 
 
 function pressresultado()  { 
-fatores[2]=numero;
+
+if(fatores[0] != undefined && fatores[1] != undefined && numero!= "") {
+    fatores[2]=numero;
+ var salvarresult;
+
 switch (fatores[1]) {
     case"+":
         resultado = Number(fatores[0]) + Number(fatores[2]);
@@ -39,15 +45,15 @@ resultado = Number(fatores[0]) * Number(fatores[2]);
 break;
 
 
-
-
 }
 
-
+salvarresult = resultado;
 limpard()
-mostrard(resultado);   
+mostrard(resultado);  
+clearmemory()
+numero = resultado.toString();
 
-
+}
 
 }
 
@@ -57,6 +63,8 @@ mostrard(resultado);
 
 
 function clearmemory() {
+    fatores= [undefined,undefined,undefined];
+    resultado = undefined;
     numero = "";
     
 }
